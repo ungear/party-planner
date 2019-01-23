@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class DateSelection extends Component {
   incrementDate() {
-    let date = { ... this.props.date };
+    let date = { ...this.props.date };
     date.month++;
     if (date.month === 13) {
       date.year++;
@@ -12,7 +12,7 @@ export default class DateSelection extends Component {
   }
 
   decrementDate() {
-    let date = { ... this.props.date };
+    let date = { ...this.props.date };
     date.month--;
     if (date.month === 0) {
       date.year--;

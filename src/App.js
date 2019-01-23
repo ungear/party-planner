@@ -10,7 +10,7 @@ class App extends Component {
     this.state = {
       currentDate: {
         year: 2019,
-        month: 1
+        month: 0
       }
     }
     this.onDateChanged = this.onDateChanged.bind(this)

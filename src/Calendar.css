@@ -1,5 +1,14 @@
 .calendar{
   width: 560px;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(7, 70px);
+  grid-row-gap: 5px;
+  grid-column-gap: 5px;
+}
+
+.c-cell--header{
+  height: 30px;
+}
+.c-cell--card{
+  height: 70px;
 }

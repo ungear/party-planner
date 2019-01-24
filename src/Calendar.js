@@ -8,7 +8,7 @@ export default class Calendar extends Component {
   render() {
     let calendar = getCalendar(this.props.date.year, this.props.date.month);
     calendar.forEach(d => {
-      d.events = this.props.events.filter(e => e.time === new Date(this.props.date.year, this.props.date.month, d.dayNumber).getTime())
+      d.events = this.props.events.filter(e => e.time === d.timestamp)
     })
     let daysMarkup = calendar.map(d =>
       <div
@@ -16,7 +16,10 @@ export default class Calendar extends Component {
         key={d.dayNumber}
         style={{ "gridColumn": d.weekDay + 1 }}
       >
-        <DayCard dayInfo={d} />
+        <DayCard
+          dayInfo={d}
+          onDaySelected={this.props.onDaySelected}
+        />
       </div>
     )
     let header = Weekdays.map((v, i) =>
@@ -37,6 +40,7 @@ function getCalendar(year, month) {
     .fill(null)
     .map((v, i) => ({
       dayNumber: i + 1,
+      timestamp: new Date(year, month, i + 1).getTime(),
       weekDay: new Date(year, month, i + 1).getDay()
     }))
   return calendar

@@ -12,6 +12,7 @@ class App extends Component {
         year: 2019,
         month: 0
       },
+      selectedDay: null,
       events: [
         {
           time: 1546290000000,
@@ -28,6 +29,9 @@ class App extends Component {
   onDateChanged(newDate) {
     this.setState({ ...this.state, currentMonth: newDate })
   }
+  onDaySelected(dayTimestamp) {
+    this.setState({ ...this.state, selectedDay: dayTimestamp })
+  }
   render() {
     return (
       <main>
@@ -36,7 +40,11 @@ class App extends Component {
           date={this.state.currentMonth}
           onDateChanged={this.onDateChanged}
         />
-        <Calendar date={this.state.currentMonth} events={this.state.events}></Calendar>
+        <Calendar
+          date={this.state.currentMonth}
+          events={this.state.events}
+          onDaySelected={this.onDaySelected.bind(this)}
+        ></Calendar>
 
         {/* <div className="App">
           <header className="App-header">

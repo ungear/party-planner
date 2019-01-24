@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "./DateSelection.css";
 
 export default class DateSelection extends Component {
   incrementDate() {
@@ -23,9 +24,9 @@ export default class DateSelection extends Component {
 
   render() {
     return (
-      <section>
+      <section className="date-selection">
         <button onClick={() => { this.decrementDate() }}>-</button>
-        <span> {this.props.date.year} - {this.props.date.month}</span>
+        <span> {new Date(this.props.date.year, this.props.date.month).toLocaleString("en-US", { month: 'long', year: 'numeric' })}</span>
         <button onClick={() => { this.incrementDate() }}>+</button>
       </section>
     )

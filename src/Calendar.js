@@ -29,7 +29,7 @@ export default class Calendar extends Component {
 }
 
 function getCalendar(year, month) {
-  let daysNumber = new Date(year, month, 0).getDate();
+  let daysNumber = new Date(year, month + 1, 0).getDate();
   let calendar = Array(daysNumber)
     .fill(null)
     .map((v, i) => ({

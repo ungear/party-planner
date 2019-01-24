@@ -8,25 +8,35 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      currentDate: {
+      currentMonth: {
         year: 2019,
         month: 0
-      }
+      },
+      events: [
+        {
+          time: 1546290000000,
+          description: "test event 1"
+        },
+        {
+          time: 1546376400000,
+          description: "test event 2"
+        }
+      ]
     }
     this.onDateChanged = this.onDateChanged.bind(this)
   }
   onDateChanged(newDate) {
-    this.setState({ ...this.state, currentDate: newDate })
+    this.setState({ ...this.state, currentMonth: newDate })
   }
   render() {
     return (
       <main>
         <Header></Header>
         <DateSelection
-          date={this.state.currentDate}
+          date={this.state.currentMonth}
           onDateChanged={this.onDateChanged}
         />
-        <Calendar date={this.state.currentDate}></Calendar>
+        <Calendar date={this.state.currentMonth} events={this.state.events}></Calendar>
 
         {/* <div className="App">
           <header className="App-header">

@@ -7,6 +7,9 @@ const Weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Frida
 export default class Calendar extends Component {
   render() {
     let calendar = getCalendar(this.props.date.year, this.props.date.month);
+    calendar.forEach(d => {
+      d.events = this.props.events.filter(e => e.time === new Date(this.props.date.year, this.props.date.month, d.dayNumber).getTime())
+    })
     let daysMarkup = calendar.map(d =>
       <div
         className="c-cell c-cell--card"

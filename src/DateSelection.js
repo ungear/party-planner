@@ -9,7 +9,7 @@ export default class DateSelection extends Component {
       date.year++;
       date.month = 1;
     }
-    this.props.onDateChanged(date)
+    this.props.onMonthChanged(date)
   }
 
   decrementDate() {
@@ -19,7 +19,7 @@ export default class DateSelection extends Component {
       date.year--;
       date.month = 12;
     }
-    this.props.onDateChanged(date)
+    this.props.onMonthChanged(date)
   }
 
   render() {

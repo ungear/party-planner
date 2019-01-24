@@ -3,6 +3,7 @@ import './App.css';
 import Header from "./Header.js";
 import DateSelection from "./DateSelection";
 import Calendar from "./Calendar";
+import DayEditor from "./DayEditor";
 
 class App extends Component {
   constructor() {
@@ -24,27 +25,32 @@ class App extends Component {
         }
       ]
     }
-    this.onDateChanged = this.onDateChanged.bind(this)
   }
-  onDateChanged(newDate) {
-    this.setState({ ...this.state, currentMonth: newDate })
+  onMonthChanged(newDate) {
+    this.setState({ ...this.state, currentMonth: newDate, selectedDay: null })
   }
   onDaySelected(dayTimestamp) {
     this.setState({ ...this.state, selectedDay: dayTimestamp })
   }
   render() {
+    let editor = this.state.selectedDay
+      ? <DayEditor
+        dayTimestamp={this.state.selectedDay}
+        events={this.state.events} />
+      : null
     return (
       <main>
         <Header></Header>
         <DateSelection
           date={this.state.currentMonth}
-          onDateChanged={this.onDateChanged}
+          onMonthChanged={this.onMonthChanged.bind(this)}
         />
         <Calendar
           date={this.state.currentMonth}
           events={this.state.events}
           onDaySelected={this.onDaySelected.bind(this)}
         ></Calendar>
+        {editor}
 
         {/* <div className="App">
           <header className="App-header">

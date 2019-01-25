@@ -40,7 +40,7 @@ class App extends Component {
     this.setState({ ...this.state, selectedDay: dayTimestamp })
   }
   onEventsUpdated(events) {
-
+    this.setState({ ...this.state, events })
   }
   render() {
     let editor = this.state.selectedDay

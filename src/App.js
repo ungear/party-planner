@@ -16,12 +16,19 @@ class App extends Component {
       selectedDay: null,
       events: [
         {
+          eventId: 1,
           time: 1546290000000,
           description: "test event 1"
         },
         {
-          time: 1546376400000,
+          eventId: 2,
+          time: 1546290000000,
           description: "test event 2"
+        },
+        {
+          eventId: 3,
+          time: 1546376400000,
+          description: "test event 3"
         }
       ]
     }
@@ -32,11 +39,15 @@ class App extends Component {
   onDaySelected(dayTimestamp) {
     this.setState({ ...this.state, selectedDay: dayTimestamp })
   }
+  onEventsUpdated(events) {
+
+  }
   render() {
     let editor = this.state.selectedDay
       ? <DayEditor
         dayTimestamp={this.state.selectedDay}
-        events={this.state.events} />
+        events={this.state.events}
+        onEventsUpdated={this.onEventsUpdated.bind(this)} />
       : null
     return (
       <main>

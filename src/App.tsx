@@ -1,13 +1,24 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 import Header from "./Header.js";
 import DateSelection from "./DateSelection";
 import Calendar from "./Calendar";
 import DayEditor from "./DayEditor";
+import { Event } from "../typing/entities";
+
+interface AppState {
+  currentMonth: {
+    year: number;
+    month: number;
+  };
+  selectedDay: number | null;
+  events: Event[];
+}
 
 class App extends Component {
+  state: AppState;
   constructor() {
-    super();
+    super({});
     this.state = {
       currentMonth: {
         year: 2019,
@@ -31,27 +42,28 @@ class App extends Component {
           description: "test event 3"
         }
       ]
-    }
+    };
   }
-  onMonthChanged(newDate) {
-    this.setState({ ...this.state, currentMonth: newDate, selectedDay: null })
+  onMonthChanged(newDate: number) {
+    this.setState({ ...this.state, currentMonth: newDate, selectedDay: null });
   }
-  onDaySelected(dayTimestamp) {
-    this.setState({ ...this.state, selectedDay: dayTimestamp })
+  onDaySelected(dayTimestamp: number) {
+    this.setState({ ...this.state, selectedDay: dayTimestamp });
   }
-  onEventsUpdated(events) {
-    this.setState({ ...this.state, events })
+  onEventsUpdated(events: Event[]) {
+    this.setState({ ...this.state, events });
   }
   render() {
-    let editor = this.state.selectedDay
-      ? <DayEditor
+    let editor = this.state.selectedDay ? (
+      <DayEditor
         dayTimestamp={this.state.selectedDay}
         events={this.state.events}
-        onEventsUpdated={this.onEventsUpdated.bind(this)} />
-      : null
+        onEventsUpdated={this.onEventsUpdated.bind(this)}
+      />
+    ) : null;
     return (
       <main>
-        <Header></Header>
+        <Header />
         <DateSelection
           date={this.state.currentMonth}
           onMonthChanged={this.onMonthChanged.bind(this)}
@@ -60,7 +72,7 @@ class App extends Component {
           date={this.state.currentMonth}
           events={this.state.events}
           onDaySelected={this.onDaySelected.bind(this)}
-        ></Calendar>
+        />
         {editor}
 
         {/* <div className="App">

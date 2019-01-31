@@ -1,7 +1,13 @@
 import React from "react";
 import "./DayCard.css";
+import { CalendarItem } from "../typing/entities";
 
-export default function DayCard(props: any) {
+interface Props {
+  dayInfo: CalendarItem;
+  onDaySelected: Function;
+}
+
+export default function DayCard(props: Props) {
   return (
     <div
       className="day-card"

@@ -4,13 +4,10 @@ import Header from "./Header.js";
 import DateSelection from "./DateSelection";
 import Calendar from "./Calendar";
 import DayEditor from "./DayEditor";
-import { Event } from "../typing/entities";
+import { Event, CurrentMonth } from "../typing/entities";
 
 interface AppState {
-  currentMonth: {
-    year: number;
-    month: number;
-  };
+  currentMonth: CurrentMonth;
   selectedDay: number | null;
   events: Event[];
 }
